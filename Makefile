@@ -1,6 +1,6 @@
-all: lein javac	run
+all: lein javac run
 
-run: 
+run:
 	java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  Turd
 
 javac:
