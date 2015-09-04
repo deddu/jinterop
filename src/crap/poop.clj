@@ -1,12 +1,12 @@
 (ns crap.poop
   (:gen-class
-   :methods [[show [] void]
-             [showmsg [String] void]]))
+   :methods [[stomp [] void]
+             [realize [String] void]]))
 
-(defn -show
+(defn -stomp
   [this]
-  (println "prrooooot!"))
+  (println "squishhh!"))
 
-(defn -showmsg
+(defn -realize
   [this msg]
   (println msg))
