@@ -1,7 +1,5 @@
 import crap.jinterop.Zoo;
-import clojure.lang.IFn;
-import clojure.lang.RT;
-import clojure.lang.Symbol;
+import crap.poop;
 
 class Turd {
     public static void main(String[] a){
@@ -10,6 +8,9 @@ class Turd {
         System.out.println("x: " +z.x+ " y: " + z.y);
         for (Object x: z){
         System.out.println("i"+x);
+        poop pp= new poop();
+        pp.show();
+        pp.showmsg("suca");
         }
     }
 }
