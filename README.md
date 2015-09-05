@@ -58,8 +58,9 @@ Hurray!!
 Few things to observe:
 - I've not told you a secret: one of the reasons it works, is that I've specified `:uberjar {:aot :all}` in the project.clj. **This is necessary**: Clojure usually compiles his classes at run time, so you need to pass "ahead of time" to the buildtool. You want to have the bytecode available for your java class, so you need to instruct lein!
 - We are using the uberjar, as in my opinion it make it simpler. You can alternatively spend some time passing the classes directly in the classpath. (either unzip the jar, or add :aot [$path] to your project.clj  ).
-- deftype creates a simple class. The `^String` is clojure *metadata* and is optional. It is called type annotation, (i believe under the hood adds a ^{:tag "String"} metadata) and, if I got it right, it helps: the attributes will otherwise default to Object!  
-- See in the java file how we are accessing the properties on the object. Also look carefully at the namespace of the clojurefile, how it get translated in the import statement of the java file.
+- Deftype creates a simple class. The `^String` is clojure *metadata* and is optional. It is called type annotation, (i believe under the hood adds a ^{:tag "String"} metadata) and, if I got it right, it helps: the attributes will otherwise default to Object! Well actually they still are objects. Meh.
+- See in the java file how we are accessing the properties on the object: We are accessing directly the instance variables, and not using getters and setters. Probably there's some way to auto-generate those, but I have no clue.
+- Also look carefully at the namespace of the clojurefile, how it get translated in the import statement of the java file.
 
 
 ## Two: cool, but now how I get to define a method on the crap?
