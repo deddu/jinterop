@@ -13,7 +13,7 @@ In the real enterprisey planet, you are stuck with java 6, maybe java5, and you 
 below you can find `src/crap/FootOnCrap.java` and `src/crap/crap.clj`; Those compose my "hello world" example. Note how the namespace get imported in the java file. This is some of the most complex stuff to get right if, like me, you don't know what the hell the JVM wants from your file structure. 
 here they are for simplicity:
 
-```
+```clojure
 ;; src/crap/crap.clj
 (ns crap.crap)
 
@@ -24,7 +24,7 @@ here they are for simplicity:
 ```
 and
 
-```
+```java
 //src/crap/FootOnCrap.java
 import crap.crap.Crap;
 
@@ -39,18 +39,18 @@ class FootOnCrap {
 ```
 I created both those files in the same directory, because I don't really care about the best practices, I don't know them, and we are playing around. So 
 when you are done admiring the simplicity of those two, compile with
-```
+```bash
 lein uberjar
 ```
 this will compile the clojure.
 follow with
-```
+```bash
 javac -cp "src/crap:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"   src/crap/FootOnCrap.java
 
 ```
 and finally execute the java class with
 
-```
+```bash
 java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnCrap
 ```
 Hurray!!
@@ -65,7 +65,7 @@ Few things to observe:
 ## Two: cool, but now how I get to define a method on the crap?
 I have no clue. So we take another approach: `gen-class`.
 here's our crap.poop namespace:
-```
+```clojure
 (ns crap.poop
   (:gen-class
    :methods [[stomp [] void]
@@ -81,7 +81,7 @@ here's our crap.poop namespace:
 
 ```
 and here's our java code:
-```
+```java
 import crap.poop;
 
 class FootOnPoop {
@@ -94,17 +94,17 @@ class FootOnPoop {
 
 ```
 Again, when you are done admiring the simplicity of those two, compile the clojure with
-```
+```bash
 lein uberjar
 ```
 follow with
-```
+```bash
 javac -cp "src/crap:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"   src/crap/FootOnPoop.java
 
 ```
 and finally execute the java class with
 
-```
+```bash
 java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnPoop
 ```
 
