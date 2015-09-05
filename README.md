@@ -110,4 +110,10 @@ java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnP
 
 
 ##Three: interfaces, etc.
-see among the files, there's one example. Also see [clojure programming](http://shop.oreilly.com/product/0636920013754.do) and [clojure for the brave and true](http://braveclojure.com).
+see among the files, there's one example. Work In Progress
+
+##References, links and footnotes:
+1. Also see [clojure programming](http://shop.oreilly.com/product/0636920013754.do) 
+2. [clojure for the brave and true](http://braveclojure.com). 
+3. [Stuart Halloway's talk is also great](http://www.infoq.com/presentations/Clojure-Java-Interop)
+4. Tutorial on gen-class by [Meikel Brandmeyer](http://kotka.de/blog/2010/02/gen-class_how_it_works_and_how_to_use_it.html) 
