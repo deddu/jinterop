@@ -1,21 +1,44 @@
 # crap.jinterop
 
 Calling Clojure from java. What you never dared asking.
-Everyone in the clojure community says that you can call clojure from java, that it is easy to embed it in your existing project etc etc. But there's never a fucking simple example. Here they are.
+Everyone in the clojure community says that you can call clojure from java, that it is easy to embed it in your existing project etc etc. But there's never a fucking simple example. Here they are. 
+##tools
+lein, javac, java. I know it is possible to go barebones with `(compile)` from the repl, but it is simpler this way. The objective here is to experiment and understand how to create code in clojure that can be used in your legacy java app. Or by your legacy coworkers.
 
 ##why care:
-In the real enterprisey planet, you are stuck with java 6, maybe java5, and you want to use a decent language under the hood. But your (pri)mates still need to instantiate a MTFKBLHTTPCLIENT... and so on.
+In the real enterprisey planet, you are stuck with java 6, maybe java5, and you want to use a decent language under the hood. But your (pri)mates still need to instantiate a MTFKBLHTTPCLIENT and don't want to move on... or Prod has other priorities, such as **for when it rains next tuesday and you're home** and so on.
 
 
-## One : my first class. In clojure. And use it from java.
-open `src/crap/FootOnCrap.java` and `src/crap/crap.clj`; This is the "hello world" example. As you might have figured I don't really lke java,so I've named it FootOnCrap. note how the namespace get imported in the java file. This is some of the most complex stuff to get right if, like me, you don't know what the hell the JVM wants from your file structure.
+## One : let's build a simple class. In clojure. And let's use it from java.
+below you can find `src/crap/FootOnCrap.java` and `src/crap/crap.clj`; Those compose my "hello world" example. Note how the namespace get imported in the java file. This is some of the most complex stuff to get right if, like me, you don't know what the hell the JVM wants from your file structure. 
 here they are for simplicity:
 
+```
+;; src/crap/crap.clj
+(ns crap.crap)
 
+;;a simple class
+(deftype Crap
+  [^String consistence ^String smell ^String color])
 
+```
+and
 
+```
+//src/crap/FootOnCrap.java
+import crap.crap.Crap;
 
-When you are done admiring the simplicity of those two, compile with
+class FootOnCrap {
+    public static void main(String[] a){
+        System.out.println("ah!");
+        Crap z = new Crap("creamy","OMG", "beige");
+        System.out.println("I stomped on a "+z.consistence+" "+z.color+" crap! it also smells like " + z.smell + "!!");
+        }
+}
+
+```
+I created both those files in the same directory, because I don't really care about the best practices, I don't know them, and we are playing around. So 
+when you are done admiring the simplicity of those two, compile with
 ```
 lein uberjar
 ```
@@ -30,12 +53,17 @@ and finally execute the java class with
 ```
 java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnCrap
 ```
+Hurray!!
 
-I've not told you a secret: one of the reasons it works, is that I've specified `:uberjar {:aot :all}`.
+Few things to observe:
+- I've not told you a secret: one of the reasons it works, is that I've specified `:uberjar {:aot :all}` in the project.clj. **This is necessary**: Clojure usually compiles his classes at run time, so you need to pass "ahead of time" to the buildtool. You want to have the bytecode available for your java class, so you need to instruct lein!
+- We are using the uberjar, as in my opinion it make it simpler. You can alternatively spend some time passing the classes directly in the classpath. (either unzip the jar, or add :aot [$path] to your project.clj  ).
+- deftype creates a simple class. The `^String` is clojure *metadata* and is optional. It is called type annotation, (i believe under the hood adds a ^{:tag "String"} metadata) and, if I got it right, it helps: the attributes will otherwise default to Object!  
+- See in the java file how we are accessing the properties on the object. Also look carefully at the namespace of the clojurefile, how it get translated in the import statement of the java file.
+
 
 ## Two: cool, but now how I get to define a method on the crap?
 I have no clue. So we take another approach: `gen-class`.
-
 here's our crap.poop namespace:
 ```
 (ns crap.poop
@@ -79,5 +107,7 @@ and finally execute the java class with
 ```
 java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnPoop
 ```
+
+
 ##Three: interfaces, etc.
 see among the files, there's one example. Also see [clojure programming](http://shop.oreilly.com/product/0636920013754.do) and [clojure for the brave and true](http://braveclojure.com).

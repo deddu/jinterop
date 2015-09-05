@@ -1,5 +1,5 @@
 (ns crap.crap)
 
-;;a simple class that extends iterable
+;; a simple class
 (deftype Crap
   [^String consistence ^String smell ^String color])
