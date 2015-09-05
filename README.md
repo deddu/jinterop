@@ -6,7 +6,7 @@ Everyone in the clojure community says that you can call clojure from java, that
 lein, javac, java. I know it is possible to go barebones with `(compile)` from the repl, but it is simpler this way. The objective here is to experiment and understand how to create code in clojure that can be used in your legacy java app. Or by your legacy coworkers.
 
 ##why care:
-In the real enterprisey planet, you are stuck with java 6, maybe java5, and you want to use a decent language under the hood. But your (pri)mates still need to instantiate a MTFKBLHTTPCLIENT and don't want to move on... or Prod has other priorities, such as **for when it rains next tuesday and you're home** and so on.
+In the real enterprisey planet, you are stuck with java 6, maybe java5, and you want to use a decent language under the hood. But your (pri)mates still need to instantiate a MTFKBLHTTPCLIENT and don't want to move on... or Prod has other priorities, such as *for when it rains next tuesday and you're home* and so on.
 
 
 ## One : let's build a simple class. In clojure. And let's use it from java.
