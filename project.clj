@@ -1,5 +1,5 @@
 (defproject crap.jinterop "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "A practice clojure library demonstrating java interop"
   :url "https://github.com/deddu/jinterop"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
