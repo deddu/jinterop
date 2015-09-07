@@ -1,20 +1,21 @@
 VERSION=0.1.0-SNAPSHOT
 UBERJAR=target/crap.jinterop-$(VERSION)-standalone.jar
 
-.PHONY: all uberjar clean
+.PHONY: all uberjar run clean
 
-all: $(UBERJAR) javac run
+all: $(UBERJAR) run
 
-run:
-	java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  Turd
+run: target/Turd.class
+	java -cp "$(dir $<):$(UBERJAR)" Turd
 
-javac:
-	javac -cp "src/crap:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"   src/crap/turd.java
+target/Turd.class: src/java/crap/turd.java $(UBERJAR) $(wildcard src/**/*.java)
+	javac -cp "$(dir $<):$(UBERJAR)" -d $(dir $@) $<
 
 uberjar: $(UBERJAR)
 
-$(UBERJAR):
+$(UBERJAR): $(wildcard src/**/*.clj)
 	lein uberjar
 
 clean:
-	lein clean
+	#lein clean
+	rm -rf target/

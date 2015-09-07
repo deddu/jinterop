@@ -16,9 +16,9 @@
 (defprotocol Talkable (speak [this]))
 
 ;; idk
-(extend-protocol Talkable 
+(extend-protocol Talkable
   String
-  (speak [s] s) 
+  (speak [s] s)
   Object
   (speak [this]
     (str (-> this class .getName) "s can't talk!")))
