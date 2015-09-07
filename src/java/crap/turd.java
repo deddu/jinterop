@@ -11,6 +11,8 @@ class Turd {
         poop pp= new poop();
         pp.stomp();
         pp.realize("suca");
+        pp.stomp();
+        pp.realize("poo has already been trampled");
         }
     }
 }

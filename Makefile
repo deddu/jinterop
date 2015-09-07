@@ -5,15 +5,18 @@ UBERJAR=target/crap.jinterop-$(VERSION)-standalone.jar
 
 all: $(UBERJAR) run
 
-run: target/Turd.class
-	java -cp "$(dir $<):$(UBERJAR)" Turd
+run: java-Turd java-FootOnCrap java-FootOnTurd java-FootOnPoop
 
-target/Turd.class: src/java/crap/turd.java $(UBERJAR) $(wildcard src/**/*.java)
+java-%: target/%.class
+	java -cp "$(dir $<):$(UBERJAR)" $(shell basename $< .class)
+
+target/%.class: src/java/crap/%.java $(UBERJAR) $(wildcard src/**/*.java)
 	javac -cp "$(dir $<):$(UBERJAR)" -d $(dir $@) $<
 
 uberjar: $(UBERJAR)
 
 $(UBERJAR): $(wildcard src/**/*.clj)
+	rm -f $@
 	lein uberjar
 
 clean:
