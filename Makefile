@@ -1,10 +1,24 @@
-all: lein javac run
+VERSION=0.1.0-SNAPSHOT
+UBERJAR=target/crap.jinterop-$(VERSION)-standalone.jar
 
-run:
-	java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  Turd
+.PHONY: all uberjar run clean
 
-javac:
-	javac -cp "src/crap:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"   src/crap/turd.java
+all: $(UBERJAR) run
 
-lein:
+run: java-Turd java-FootOnCrap java-FootOnTurd java-FootOnPoop
+
+java-%: target/%.class
+	java -cp "$(dir $<):$(UBERJAR)" $(shell basename $< .class)
+
+target/%.class: src/java/crap/%.java $(UBERJAR) $(wildcard src/**/*.java)
+	javac -cp "$(dir $<):$(UBERJAR)" -d $(dir $@) $<
+
+uberjar: $(UBERJAR)
+
+$(UBERJAR): $(wildcard src/**/*.clj)
+	rm -f $@
 	lein uberjar
+
+clean:
+	#lein clean
+	rm -rf target/

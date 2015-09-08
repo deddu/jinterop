@@ -9,8 +9,10 @@ class Turd {
         for (Object x: z){
         System.out.println("i"+x);
         poop pp= new poop();
-        pp.show();
-        pp.showmsg("suca");
+        pp.stomp();
+        pp.realize("suca");
+        pp.stomp();
+        pp.realize("poo has already been trampled");
         }
     }
 }

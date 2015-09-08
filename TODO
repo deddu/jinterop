@@ -1,0 +1,6 @@
+- Set target byte code
+- Type annotations (via prismatic/schema?)
+- Javadoc Documentation
+- Artifact Deployment
+  - Clojars
+  - Example Maven POM file and conventional java project

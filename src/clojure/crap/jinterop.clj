@@ -7,18 +7,13 @@
   (iterator [this]
     (.iterator (range x y))))
 
-;; a simple function
-(defn skew [this]
-    (+ 3 5 ))
-
-
 ;; an interface?
 (defprotocol Talkable (speak [this]))
 
 ;; idk
-(extend-protocol Talkable 
+(extend-protocol Talkable
   String
-  (speak [s] s) 
+  (speak [s] s)
   Object
   (speak [this]
     (str (-> this class .getName) "s can't talk!")))
