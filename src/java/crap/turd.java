@@ -1,5 +1,5 @@
 import crap.jinterop.Zoo;
-import crap.poop;
+import crap.numbertwo;
 
 class Turd {
     public static void main(String[] a){
@@ -8,7 +8,7 @@ class Turd {
         System.out.println("x: " +z.x+ " y: " + z.y);
         for (Object x: z){
         System.out.println("i"+x);
-        poop pp= new poop();
+        numbertwo pp= new numbertwo();
         pp.stomp();
         pp.realize("suca");
         pp.stomp();
