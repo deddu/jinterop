@@ -97,7 +97,7 @@ class FootOnPoop {
         poop pp= new poop();
         pp.stomp();
         pp.realize("ohy noy!");
-        }
+    }
 }
 ```
 
@@ -120,10 +120,10 @@ java -cp "src/crap/:target/crap.jinterop-0.1.0-SNAPSHOT-standalone.jar"  FootOnP
 ```
 
 
-##Three: interfaces, etc.
+## Three: interfaces, etc.
 see among the files, there's one example. Work In Progress
 
-##References, links and footnotes:
+## References, links and footnotes:
 1. Also see [clojure programming](http://shop.oreilly.com/product/0636920013754.do) 
 2. [clojure for the brave and true](http://braveclojure.com). 
 3. [Stuart Halloway's talk is also great](http://www.infoq.com/presentations/Clojure-Java-Interop)
